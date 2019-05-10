@@ -126,6 +126,7 @@
       justify-content: center;
       align-items: center;
       button.dropbtn {
+        background-color: #fff;
         border-width: 0px;
         font-family: Montserrat;
         font-size: 14px;
@@ -134,8 +135,6 @@
         font-stretch: normal;
         line-height: 1.57;
         letter-spacing: normal;
-        color: var(--dark-grey);
-        
       }
       .dropdown-content {
         display: flex;
@@ -159,8 +158,6 @@
           text-align: center;
           color: var(--dark-grey);
           padding: 16.5px 18.75px;
-
-         
         }
       }
     }

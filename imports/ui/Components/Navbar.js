@@ -60,19 +60,19 @@ class Navbar extends Component {
         <div className="nav-line" />
         <div className="nav-bottom">
           <div className="nav-dropdown">
-            <button class="dropbtn">Men</button>
-            {/* <div class="dropdown-content" id="menDropdown">
+            <button className="dropbtn">Men</button>
+            {/* <div className="dropdown-content" id="menDropdown">
               <a href="#">Tops</a>
               <a href="#">Bottoms</a>
               <a href="#">Shorts</a>
               <a href="#">Shoes</a>
               <a href="#">Sale</a>
             </div> */}
-            <img src="/arrow.svg" class="Arrow" />
+            <img src="/arrow.svg" className="Arrow" />
           </div>
           <div className="nav-dropdown">
-            <button class="dropbtn">Ladies</button>
-            <div class="dropdown-content" id="menDropdown">
+            <button className="dropbtn">Ladies</button>
+            <div className="dropdown-content" id="menDropdown">
               <a href="#">Tops</a>
               <a href="#">Bottoms</a>
               <a href="#">Dresses</a>
@@ -81,16 +81,16 @@ class Navbar extends Component {
               <a href="#">Accesories</a>
               <a href="#">Sale</a>
             </div>
-            <img src="/arrow.svg" class="Arrow" />
+            <img src="/arrow.svg" className="Arrow" />
           </div>
 
           <div className="nav-dropdown">
             Girls
-            <img src="/arrow.svg" class="Arrow" />
+            <img src="/arrow.svg" className="Arrow" />
           </div>
           <div className="nav-dropdown">
             Boys
-            <img src="/arrow.svg" class="Arrow" />
+            <img src="/arrow.svg" className="Arrow" />
           </div>
         </div>
         <div className="nav-line" />
