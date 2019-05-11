@@ -1,11 +1,69 @@
 import React, { Component } from "react";
+import Dropdown from "./Dropdown";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: "Search",
-      cart: 1
+      cart: 1,
+      menObj: [
+        {
+          link: "#",
+          title: "Tops"
+        },
+        {
+          link: "#",
+          title: "Bottoms"
+        },
+        {
+          link: "#",
+          title: "Shorts"
+        },
+        {
+          link: "#",
+          title: "Jackets"
+        },
+        {
+          link: "#",
+          title: "Shoes"
+        },
+        {
+          link: "#",
+          title: "Sale"
+        }
+      ],
+
+      ladiesObj: [
+        {
+          link: "#",
+          title: "Tops"
+        },
+        {
+          link: "#",
+          title: "Bottoms"
+        },
+        {
+          link: "#",
+          title: "Dresses"
+        },
+        {
+          link: "#",
+          title: "Jackets"
+        },
+        {
+          link: "#",
+          title: "Shoes"
+        },
+        {
+          link: "#",
+          title: "Accessories"
+        },
+        {
+          link: "#",
+          title: "Sale"
+        }
+      ]
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,41 +116,14 @@ class Navbar extends Component {
           </div>
         </div>
         <div className="nav-line" />
-        <div className="nav-bottom">
-          <div className="nav-dropdown">
-            <button className="dropbtn">Men</button>
-            {/* <div className="dropdown-content" id="menDropdown">
-              <a href="#">Tops</a>
-              <a href="#">Bottoms</a>
-              <a href="#">Shorts</a>
-              <a href="#">Shoes</a>
-              <a href="#">Sale</a>
-            </div> */}
-            <img src="/arrow.svg" className="Arrow" />
-          </div>
-          <div className="nav-dropdown">
-            <button className="dropbtn">Ladies</button>
-            <div className="dropdown-content" id="menDropdown">
-              <a href="#">Tops</a>
-              <a href="#">Bottoms</a>
-              <a href="#">Dresses</a>
-              <a href="#">Jackets</a>
-              <a href="#">Shoes</a>
-              <a href="#">Accesories</a>
-              <a href="#">Sale</a>
-            </div>
-            <img src="/arrow.svg" className="Arrow" />
-          </div>
 
-          <div className="nav-dropdown">
-            Girls
-            <img src="/arrow.svg" className="Arrow" />
-          </div>
-          <div className="nav-dropdown">
-            Boys
-            <img src="/arrow.svg" className="Arrow" />
-          </div>
+        <div className="nav-bottom">
+          <Dropdown title="Men" list={this.state.menObj} />
+          <Dropdown title="Ladies" list={this.state.ladiesObj} />
+          <Dropdown title="Girls" list={this.state.ladiesObj} />
+          <Dropdown title="Boys" list={this.state.menObj} />
         </div>
+
         <div className="nav-line" />
       </div>
     );

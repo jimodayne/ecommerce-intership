@@ -125,35 +125,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      button.dropbtn {
-        background-color: #fff;
-        border-width: 0px;
-        font-family: Montserrat;
-        font-size: 14px;
-        font-weight: 500;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.57;
-        letter-spacing: normal;
+
+      .button-wrap {
+        display: flex;
       }
-      .dropdown-content {
+      ul.dropdown-content {
         display: flex;
         padding-left: 2px;
         padding-right: 2px;
         position: absolute;
-        bottom: -60px;
+        bottom: -75px;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
         border: solid 0.5px #eaeaea;
         background-color: #fbfbfb;
         width: fit-content;
 
-        a {
+        li {
+          list-style-type: none;
           font-size: 14px;
-          text-decoration: none;
           font-weight: normal;
           font-style: normal;
           font-stretch: normal;
           line-height: 1.57;
+          text-decoration: none;
           letter-spacing: normal;
           text-align: center;
           color: var(--dark-grey);
@@ -167,3 +161,37 @@
 .HomePage {
   position: relative;
 }
+.dropdown {
+  display: flex;
+  justify-content: center;
+}
+// button.dropdown-toggle.btn.btn-success {
+//   background-color: #fff;
+//   border-color: #fff;
+//   color: var(--dark-grey);
+//   font-size: 14px;
+//   text-decoration: none;
+//   font-weight: normal;
+//   font-style: normal;
+//   font-stretch: normal;
+//   line-height: 1.57;
+//   letter-spacing: normal;
+//   text-align: center;
+//   box-shadow: none;
+// }
+
+// div.dropdown-menu.show {
+//   display: flex;
+//   flex-direction: row;
+//   left: -80px !important;
+//   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+//   border: solid 0.5px #eaeaea;
+//   background-color: #fbfbfb;
+// }
+
+// .btn-success.dropdown-toggle:focus {
+//   box-shadow: none !important;
+//   background-color: #fff !important;
+//   color: var(--dark-grey) !important;
+//   border-width: 0px !important;
+// }
