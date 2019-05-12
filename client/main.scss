@@ -30,6 +30,7 @@
 
       input {
         font-family: Montserrat;
+        outline: none;
         height: calc(1.5em + 0.75rem - 4px);
         width: 135px;
         position: relative;
@@ -128,6 +129,7 @@
 
       .button-wrap {
         display: flex;
+        align-items: center;
       }
       ul.dropdown-content {
         display: flex;
@@ -278,6 +280,7 @@
 }
 .bottom-nav {
   height: 185px;
+  padding: 25px 0px;
   .bottom-nav-mid {
     padding: 0px 130px;
     .baseline {
@@ -302,7 +305,7 @@
         position: absolute;
         right: 0%;
         img {
-          margin: 0px 7.5px;
+          margin-left: 7.5px;
           width: 24px;
           height: 24px;
           object-fit: contain;
@@ -343,13 +346,20 @@
     .bottom-nav-bot {
       display: flex;
       position: relative;
+
       top: 14.5px;
       ul.left {
         position: relative;
+        li {
+          padding-right: 10.5px;
+        }
       }
       ul.right {
         position: absolute;
         right: 0px;
+        li {
+          padding-left: 10.5px;
+        }
       }
       ul {
         display: flex;
@@ -364,7 +374,7 @@
           font-weight: 500;
           font-style: normal;
           font-stretch: normal;
-          padding: 0px 10.5px;
+          // padding: 0px 10.5px;
           line-height: 1.83;
           letter-spacing: normal;
           text-align: center;

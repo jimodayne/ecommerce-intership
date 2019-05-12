@@ -8,6 +8,7 @@ class Navbar extends Component {
     this.state = {
       value: "Search",
       cart: 1,
+      content: "",
       menObj: [
         {
           link: "#",
@@ -69,13 +70,15 @@ class Navbar extends Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ content: event.target.value });
   }
 
   handleKeyPress(event) {
     if (event.key !== "Enter") return;
     if (this.state.content === "") return;
     // this.handleSend();
+    console.log(this.state.content);
+    this.setState({ content: "" });
   }
 
   render() {
@@ -83,13 +86,20 @@ class Navbar extends Component {
       <div className="nav-bar-primary">
         <div className="nav-top">
           <div className="nav-search">
-            <Form.Control
+            <input
               type="text"
               placeholder="Search"
               value={this.state.content}
               onChange={this.handleChange.bind(this)}
               onKeyPress={this.handleKeyPress.bind(this)}
             />
+            {/* <Form.Control
+              type="text"
+              placeholder="Search"
+              value={this.state.content}
+              onChange={this.handleChange.bind(this)}
+              onKeyPress={this.handleKeyPress.bind(this)}
+            /> */}
 
             <img src="/search.svg" className="Search" />
           </div>

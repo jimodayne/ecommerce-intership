@@ -1,6 +1,12 @@
 body {
-  padding: 0px 0px;
+  padding: 0px 0px 24px 0px;
   font-family: sans-serif;
+}
+.Arrow {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  opacity: 0.6;
 }
 
 :root {
