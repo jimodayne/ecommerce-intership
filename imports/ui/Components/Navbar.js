@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Dropdown from "./Dropdown";
+import { Form } from "react-bootstrap";
 
 class Navbar extends Component {
   constructor(props) {
@@ -65,17 +66,16 @@ class Navbar extends Component {
         }
       ]
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
-    alert("A name was submitted: " + this.state.value);
-    event.preventDefault();
+  handleKeyPress(event) {
+    if (event.key !== "Enter") return;
+    if (this.state.content === "") return;
+    // this.handleSend();
   }
 
   render() {
@@ -83,17 +83,14 @@ class Navbar extends Component {
       <div className="nav-bar-primary">
         <div className="nav-top">
           <div className="nav-search">
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                <input
-                  type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </label>
+            <Form.Control
+              type="text"
+              placeholder="Search"
+              value={this.state.content}
+              onChange={this.handleChange.bind(this)}
+              onKeyPress={this.handleKeyPress.bind(this)}
+            />
 
-              {/* <input type="submit" value="Submit" /> */}
-            </form>
             <img src="/search.svg" className="Search" />
           </div>
           <div className="nav-logo">
@@ -123,7 +120,6 @@ class Navbar extends Component {
           <Dropdown title="Girls" list={this.state.ladiesObj} />
           <Dropdown title="Boys" list={this.state.menObj} />
         </div>
-
         <div className="nav-line" />
       </div>
     );

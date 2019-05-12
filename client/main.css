@@ -1,5 +1,5 @@
 body {
-  padding: 0px 10px;
+  padding: 0px 0px;
   font-family: sans-serif;
 }
 
@@ -19,4 +19,7 @@ body {
   --pumpkin-orange: #ff7413;
   --bright-orange: #ff6900;
   --apricot: #ffc371;
+}
+.form-control {
+  color: #cccccc;
 }
