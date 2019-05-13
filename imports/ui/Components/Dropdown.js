@@ -11,9 +11,7 @@ class Dropdown extends Component {
     };
   }
   toggleList() {
-    this.setState(prevState => ({
-      listOpen: !prevState.listOpen
-    }));
+    this.setState({ listOpen: !this.state.listOpen });
   }
 
   handleClickOutside = evt => {
@@ -31,8 +29,8 @@ class Dropdown extends Component {
         </div>
         {this.state.listOpen && (
           <ul className="dropdown-content" id="menDropdown">
-            {this.state.list.map(item => (
-              <li>{item.title}</li>
+            {this.state.list.map((item, key) => (
+              <li key={key}>{item.title}</li>
             ))}
           </ul>
         )}

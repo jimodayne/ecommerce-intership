@@ -1,0 +1,48 @@
+.gallery-wrapper {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .card-holder {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 180px;
+    height: 345px;
+    .card-top {
+      width: 100%;
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+    .card-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      .card-name {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: normal;
+        color: var(--dark-grey);
+      }
+      .card-price {
+        font-family: Montserrat;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.83;
+        letter-spacing: normal;
+        color: var(--greyish-brown);
+      }
+    }
+  }
+}

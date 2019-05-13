@@ -4,15 +4,16 @@
   font-style: normal;
   letter-spacing: normal;
   font-stretch: normal;
-  .header {
+  .product-header {
     display: flex;
-    height: 100px;
+    height: 80px;
     justify-content: center;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.57;
     text-align: center;
     color: var(--dark-grey);
+    z-index: -1;
   }
   div {
     display: flex;
@@ -44,7 +45,7 @@
         color: var(--greyish-brown);
         display: flex;
         flex-direction: column;
-        padding-bottom: 54px;
+        padding-bottom: 30px;
         li {
           list-style-type: none;
           padding-bottom: 18px;
@@ -81,40 +82,115 @@
     .right-warper {
       width: 100%;
       position: relative;
+      height: 32px;
       .header {
-        // width: 100%;
+        width: 100%;
+        display: flex;
+        position: absolute;
+        align-items: center;
         .sort-by {
+          cursor: pointer;
           display: flex;
           // justify-content: center;
-          align-items: center;
-          width: 179px;
-          height: 32px;
+          align-items: flex-start;
           font-style: normal;
           font-stretch: normal;
+          flex-wrap: wrap;
+          flex-direction: column;
           letter-spacing: normal;
           font-size: 12px;
 
-          border: solid 1px var(--white-four);
-          p {
-            margin: 0px;
-            padding-left: 15px;
-            font-family: Montserrat;
-            padding-right: 7px;
-            font-weight: 500;
-            line-height: 1.83;
-            color: var(--greyish-brown);
+          .up {
+            display: flex;
+            width: 179px;
+            height: 32px;
+            border: solid 1px var(--white-four);
+            // justify-content: center;
+            position: relative;
+            align-items: center;
+            p {
+              margin: 0px;
+              padding-left: 15px;
+              font-family: Montserrat;
+              padding-right: 7px;
+              font-weight: 500;
+              line-height: 1.83;
+              color: var(--greyish-brown);
+            }
+            p.bold {
+              margin: 0px;
+              font-family: Montserrat;
+              padding-left: 0px;
+              font-weight: bold;
+              line-height: 1.83;
+              color: var(--dark-grey);
+            }
+            .Arrow {
+              position: absolute;
+              right: 0px;
+            }
+            .ArrowRotate {
+              position: absolute;
+              right: 0px;
+              transform: rotate(180deg);
+            }
           }
-          p.bold {
-            margin: 0px;
+          .down {
+            position: absolute;
+            top: 34px;
+            z-index: 1;
+            ul {
+              width: 179px;
+              padding-left: 0px;
+              height: 139px;
+              box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+              border: solid 0.5px #eaeaea;
+              background-color: #fbfbfb;
+
+              display: flex;
+              flex-direction: column;
+
+              li {
+                list-style-type: none;
+                text-align: left;
+                p {
+                  padding: 7px 13px;
+                  margin-bottom: 0px;
+                }
+                div {
+                  width: 100%;
+                  height: 1px;
+                  background-color: #ececec;
+                }
+              }
+            }
+          }
+        }
+        .page {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          right: 0px;
+          .ArrowLeft {
+            // position: absolute;
+            right: 0px;
+            transform: rotate(90deg);
+          }
+          div {
             font-family: Montserrat;
-            padding-left: 0px;
-            font-weight: bold;
-            line-height: 1.83;
+            font-size: 14px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            text-align: center;
             color: var(--dark-grey);
           }
-          .Arrow {
-            position: absolute;
+          .ArrowRight {
+            // position: absolute;
             right: 0px;
+            transform: rotate(270deg);
           }
         }
       }
