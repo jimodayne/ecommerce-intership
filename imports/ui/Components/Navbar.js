@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Dropdown from "./Dropdown";
-import { Form } from "react-bootstrap";
+// import { Form } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Navbar extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Navbar extends Component {
           title: "Bottoms"
         },
         {
-          link: "#",
+          link: "/ladies/dresses",
           title: "Dresses"
         },
         {
@@ -77,7 +78,7 @@ class Navbar extends Component {
     if (event.key !== "Enter") return;
     if (this.state.content === "") return;
     // this.handleSend();
-    console.log(this.state.content);
+    // console.log(this.state.content);
     this.setState({ content: "" });
   }
 
@@ -104,7 +105,9 @@ class Navbar extends Component {
             <img src="/search.svg" className="Search" />
           </div>
           <div className="nav-logo">
-            <img src="/logo.svg" className="Logo" />
+            <Link to="/">
+              <img src="/logo.svg" className="Logo" />
+            </Link>
           </div>
 
           <div className="nav-right">

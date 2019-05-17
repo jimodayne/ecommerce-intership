@@ -1,5 +1,5 @@
 .product-lst {
-  padding: 40px 130px;
+  padding: 40px 8%;
   font-family: Montserrat;
   font-style: normal;
   letter-spacing: normal;
@@ -15,7 +15,7 @@
     color: var(--dark-grey);
     z-index: -1;
   }
-  div {
+  .product-wrap {
     display: flex;
     position: relative;
     .left-warper {
@@ -67,18 +67,78 @@
           justify-content: space-between;
           align-items: center;
           padding-bottom: 8px;
-          p {
+          p.not-active {
             margin: 0px;
+            font-size: 14px;
+            font-weight: normal;
+            color: var(--greyish-brown);
           }
         }
-        .filter-line {
+        hr {
           width: 100%;
-          height: 0.1px;
-          border: solid 0.5px #cccccc;
+          margin-top: 0;
           margin-bottom: 10px;
+        }
+        hr.filter-dash-line {
+          margin-top: 0px;
+          margin-bottom: 10px;
+          height: 0.1px;
+          width: 100%;
+          border-top: 0.5px dashed #cccccc;
         }
       }
     }
+    .filter-box-wrapper {
+      width: 100%;
+      padding-bottom: 20px;
+      .size-filter {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 15px;
+        align-items: center;
+        .size-box-normal {
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          border: solid 1px #808080;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // margin-right: 16px;
+          p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            color: var(--dark-grey);
+          }
+        }
+        .size-box-choosen {
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          background-color: var(--pale-orange);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // margin-right: 16px;
+          p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            color: var(--white);
+          }
+        }
+      }
+    }
+
     .right-warper {
       width: 100%;
       position: relative;

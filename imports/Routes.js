@@ -11,11 +11,7 @@ class Routes extends Component {
       <div className="app">
         <Navbar />
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => <Homepage itemProp={props} />}
-          />
+          <Route exact path="/" component={Homepage} />
           <Route
             path="/ladies/dresses"
             render={props => <ProductList gender="ladies" category="dresses" />}

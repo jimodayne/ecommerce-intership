@@ -5,24 +5,49 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [
+      cardList: [
         {
           name: "Collete Stretch Linen",
-          imgURL: "",
-          price: "",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "60",
           soldOut: false
         },
         {
           name: "New Stretch Linen",
-          imgURL: "",
-          price: "",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "40",
           soldOut: true
+          
         },
         {
           name: "Pipa Halter Stretch Linen",
-          imgURL: "",
-          price: "",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "69",
           soldOut: false
+        },
+        {
+          name: "Collete Stretch Linen",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "60",
+          soldOut: false
+        },
+        {
+          name: "New Stretch Linen",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "40",
+          soldOut: true
+        },
+        {
+          name: "Collete Stretch Linen",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "60",
+          soldOut: false
+        },
+        {
+          name: "New Stretch Linen",
+          imgURL: "/rectangle-copy-54.jpg",
+          price: "40",
+          soldOut: true
         }
       ]
     };
@@ -30,67 +55,17 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery-wrapper">
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
-        <Card
-          name="Pipa Halter Stretch Linenen"
-          imgURL="/rectangle-copy-54.jpg"
-          price={"69.00"}
-          soldOut={false}
-        />
+        {this.state.cardList.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              name={item.name}
+              imgURL={item.imgURL}
+              price={item.price}
+              soldOut={item.soldOut}
+            />
+          );
+        })}
       </div>
     );
   }

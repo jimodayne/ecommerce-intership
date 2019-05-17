@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import onClickOutside from "react-onclickoutside";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Dropdown extends Component {
   constructor(props) {
@@ -10,6 +12,14 @@ class Dropdown extends Component {
       headerTitle: this.props.title
     };
   }
+
+  static get propTypes() {
+    return {
+      list: PropTypes.array,
+      title: PropTypes.string
+    };
+  }
+
   toggleList() {
     this.setState({ listOpen: !this.state.listOpen });
   }
@@ -28,11 +38,13 @@ class Dropdown extends Component {
           <img src="/arrow.svg" className="Arrow" />
         </div>
         {this.state.listOpen && (
-          <ul className="dropdown-content" id="menDropdown">
+          <div className="dropdown-content">
             {this.state.list.map((item, key) => (
-              <li key={key}>{item.title}</li>
+              <Link to={item.link} key={key}>
+                {item.title}
+              </Link>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     );

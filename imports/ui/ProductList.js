@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import Gallery from "./Gallery";
+import PropTypes from "prop-types";
 
 class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       sortBy: "Popularity",
-      size: undefined,
+      size: [],
+      showSize: false,
       color: undefined,
       brand: undefined,
       price: undefined,
@@ -20,7 +22,22 @@ class ProductList extends Component {
       type: "All dresses",
       cart: 0
     };
+    this.sizeArr = ["S", "M", "L"];
+    this.colorArr = [
+      "#ff5f6d",
+      "rgba(255, 213, 67, 0.4)",
+      "rgba(95, 109, 255, 0.4)",
+      "rgba(255, 161, 95, 0.4)"
+    ];
   }
+
+  static get propTypes() {
+    return {
+      gender: PropTypes.string,
+      category: PropTypes.string
+    };
+  }
+
   handleShowSort() {
     this.setState({ sortShow: !this.state.sortShow });
   }
@@ -32,13 +49,27 @@ class ProductList extends Component {
     if (this.state.page === 1) return;
     this.setState({ page: this.state.page - 1 });
   }
+  handleChangeSize(item) {
+    if (_.includes(this.state.size, item)) {
+      const newArr = _.remove(this.state.size, x => {
+        return x !== item;
+      });
+      this.setState({ size: newArr });
+    } else {
+      this.setState({ size: [...this.state.size, item] });
+    }
+  }
+
+  showSize() {
+    this.setState({ showSize: !this.state.showSize });
+  }
   render() {
     return (
       <div className="product-lst">
         <div className="product-header">
           {_.capitalize(this.state.gender)}/{_.capitalize(this.state.category)}
         </div>
-        <div>
+        <div className="product-wrap">
           <div className="left-warper">
             <div className="category">Category</div>
 
@@ -57,41 +88,73 @@ class ProductList extends Component {
 
             <div className="filter-item">
               <div className="wrap-header">
-                <p> Size</p>
-                <img src="/arrow.svg" className="Arrow" />
+                <p className="not-active"> Size</p>
+                <img
+                  src="/arrow.svg"
+                  className="Arrow"
+                  onClick={this.showSize.bind(this)}
+                />
               </div>
-              <div className="filter-line" />
+              {this.state.showSize ? (
+                <div className="filter-box-wrapper">
+                  <hr className="filter-dash-line" />
+                  <div className="size-filter">
+                    {this.sizeArr.map((item, index) => {
+                      return _.includes(this.state.size, item) ? (
+                        <div
+                          key={index}
+                          className="size-box-choosen"
+                          onClick={this.handleChangeSize.bind(this, item)}
+                        >
+                          <p>{item}</p>
+                        </div>
+                      ) : (
+                        <div
+                          key={index}
+                          className="size-box-normal"
+                          onClick={this.handleChangeSize.bind(this, item)}
+                        >
+                          <p>{item}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <hr className="filter-line" />
+              )}
             </div>
             <div className="filter-item">
               <div className="wrap-header">
-                <p> Color</p>
+                <p className="not-active"> Color</p>
                 <img src="/arrow.svg" className="Arrow" />
               </div>
-              <div className="filter-line" />
+
+              <hr className="filter-line" />
             </div>
 
             <div className="filter-item">
               <div className="wrap-header">
-                <p> Brand</p>
+                <p className="not-active"> Brand</p>
                 <img src="/arrow.svg" className="Arrow" />
               </div>
-              <div className="filter-line" />
+              <hr className="filter-line" />
             </div>
 
             <div className="filter-item">
               <div className="wrap-header">
-                <p> Price</p>
+                <p className="not-active"> Price</p>
                 <img src="/arrow.svg" className="Arrow" />
               </div>
-              <div className="filter-line" />
+              <hr className="filter-line" />
             </div>
 
             <div className="filter-item">
               <div className="wrap-header">
-                <p> Available</p>
+                <p className="not-active"> Available</p>
                 <img src="/arrow.svg" className="Arrow" />
               </div>
-              <div className="filter-line" />
+              <hr className="filter-line" />
             </div>
           </div>
           <div className="right-warper">

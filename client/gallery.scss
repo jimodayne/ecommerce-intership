@@ -3,9 +3,12 @@
   position: absolute;
   height: 100%;
   top: 40px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+
   justify-content: space-between;
+
+  grid-template-columns: 18% 18% 18% 18% 18%;
+
   .card-holder {
     display: flex;
     flex-wrap: wrap;
