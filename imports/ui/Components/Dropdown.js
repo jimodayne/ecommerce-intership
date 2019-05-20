@@ -7,9 +7,7 @@ class Dropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listOpen: false,
-      list: this.props.list,
-      headerTitle: this.props.title
+      listOpen: false
     };
   }
 
@@ -34,12 +32,12 @@ class Dropdown extends Component {
     return (
       <div className="nav-dropdown">
         <div className="button-wrap" onClick={this.toggleList.bind(this)}>
-          <div className="dropbtn">{this.state.headerTitle}</div>
+          <div className="dropbtn">{this.props.title}</div>
           <img src="/arrow.svg" className="Arrow" />
         </div>
         {this.state.listOpen && (
           <div className="dropdown-content">
-            {this.state.list.map((item, key) => (
+            {this.props.list.map((item, key) => (
               <Link to={item.link} key={key}>
                 {item.title}
               </Link>

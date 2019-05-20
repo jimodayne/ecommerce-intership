@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Dropdown from "./Dropdown";
-// import { Form } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Meteor } from "meteor/meteor";
 
 class Navbar extends Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class Navbar extends Component {
     this.state = {
       value: "Search",
       cart: 1,
+      userLogin: false,
       content: "",
       menObj: [
         {
@@ -36,7 +37,6 @@ class Navbar extends Component {
           title: "Sale"
         }
       ],
-
       ladiesObj: [
         {
           link: "#",
@@ -94,13 +94,7 @@ class Navbar extends Component {
               onChange={this.handleChange.bind(this)}
               onKeyPress={this.handleKeyPress.bind(this)}
             />
-            {/* <Form.Control
-              type="text"
-              placeholder="Search"
-              value={this.state.content}
-              onChange={this.handleChange.bind(this)}
-              onKeyPress={this.handleKeyPress.bind(this)}
-            /> */}
+         
 
             <img src="/search.svg" className="Search" />
           </div>
@@ -111,12 +105,15 @@ class Navbar extends Component {
           </div>
 
           <div className="nav-right">
-            <button type="button" className="pri-button">
-              Register
-            </button>
-            <button type="button" className="sec-button">
-              Log in
-            </button>
+            <div className="nav-guest">
+              <button type="button" className="pri-button">
+                Register
+              </button>
+              <button type="button" className="sec-button">
+                Log in
+              </button>
+            </div>
+
             <div className="nav-cart">
               <div className="cart-cir">
                 <div className="cart-num">{this.state.cart} </div>

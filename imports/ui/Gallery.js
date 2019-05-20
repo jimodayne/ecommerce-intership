@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Card from "../ui/Components/Card";
+import { Products } from "../api/products";
+import { withTracker } from "meteor/react-meteor-data";
 
 class Gallery extends Component {
   constructor(props) {
@@ -17,7 +19,6 @@ class Gallery extends Component {
           imgURL: "/rectangle-copy-54.jpg",
           price: "40",
           soldOut: true
-          
         },
         {
           name: "Pipa Halter Stretch Linen",
@@ -55,13 +56,13 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery-wrapper">
-        {this.state.cardList.map((item, index) => {
+        {this.props.cardList.map((item, index) => {
           return (
             <Card
               key={index}
-              name={item.name}
-              imgURL={item.imgURL}
-              price={item.price}
+              name={item.title}
+              imgURL={item.imgURL.main}
+              price={item.pricing.price.toString()}
               soldOut={item.soldOut}
             />
           );
@@ -71,4 +72,8 @@ class Gallery extends Component {
   }
 }
 
-export default Gallery;
+export default withTracker(() => {
+  return {
+    cardList: Products.find({}).fetch()
+  };
+})(Gallery);

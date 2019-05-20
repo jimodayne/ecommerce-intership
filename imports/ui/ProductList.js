@@ -87,13 +87,9 @@ class ProductList extends Component {
             <div className="category">Filter</div>
 
             <div className="filter-item">
-              <div className="wrap-header">
+              <div className="wrap-header" onClick={this.showSize.bind(this)}>
                 <p className="not-active"> Size</p>
-                <img
-                  src="/arrow.svg"
-                  className="Arrow"
-                  onClick={this.showSize.bind(this)}
-                />
+                <img src="/arrow.svg" className="Arrow" />
               </div>
               {this.state.showSize ? (
                 <div className="filter-box-wrapper">

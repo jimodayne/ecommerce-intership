@@ -4,6 +4,7 @@ import Homepage from "./ui/Homepage";
 import Navbar from "./ui/Components/Navbar";
 import ButtomBar from "./ui/Components/BottomBar";
 import ProductList from "./ui/ProductList";
+import Register from "./ui/Components/Register";
 
 class Routes extends Component {
   render() {
@@ -16,6 +17,7 @@ class Routes extends Component {
             path="/ladies/dresses"
             render={props => <ProductList gender="ladies" category="dresses" />}
           />
+          <Route path="/signup" render={props => <Register />} />
         </Switch>
         <ButtomBar />
       </div>
