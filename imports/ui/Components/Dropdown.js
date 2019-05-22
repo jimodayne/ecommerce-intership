@@ -11,6 +11,8 @@ class Dropdown extends Component {
     };
   }
 
+  
+
   static get propTypes() {
     return {
       list: PropTypes.array,

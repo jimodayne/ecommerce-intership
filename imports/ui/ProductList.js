@@ -67,7 +67,7 @@ class ProductList extends Component {
     return (
       <div className="product-lst">
         <div className="product-header">
-          {_.capitalize(this.state.gender)}/{_.capitalize(this.state.category)}
+          {this.state.gender / this.state.category}
         </div>
         <div className="product-wrap">
           <div className="left-warper">

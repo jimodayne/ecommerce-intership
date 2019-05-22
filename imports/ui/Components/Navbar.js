@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Dropdown from "./Dropdown";
+
+// import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Meteor } from "meteor/meteor";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "Search",
       cart: 1,
-      userLogin: false,
+      error: "",
+      show: false,
       content: "",
       menObj: [
         {
@@ -70,6 +71,26 @@ class Navbar extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.setState({ profile: Meteor.user() });
+  //   console.log(this.props.user.profile);
+  // }
+
+  logout(e) {
+    e.preventDefault();
+    Meteor.logout(err => {
+      if (err) {
+        this.setState({ error: err.reason });
+      } else {
+        this.props.history.push("/");
+      }
+    });
+    this.setState({ show: false });
+  }
+  toggleList() {
+    this.setState({ show: !this.state.show });
+  }
+
   handleChange(event) {
     this.setState({ content: event.target.value });
   }
@@ -94,25 +115,45 @@ class Navbar extends Component {
               onChange={this.handleChange.bind(this)}
               onKeyPress={this.handleKeyPress.bind(this)}
             />
-         
 
             <img src="/search.svg" className="Search" />
           </div>
-          <div className="nav-logo">
-            <Link to="/">
+          <Link to="/">
+            <div className="nav-logo">
               <img src="/logo.svg" className="Logo" />
-            </Link>
-          </div>
-
-          <div className="nav-right">
-            <div className="nav-guest">
-              <button type="button" className="pri-button">
-                Register
-              </button>
-              <button type="button" className="sec-button">
-                Log in
-              </button>
             </div>
+          </Link>
+          <div className="nav-right">
+            {this.props.user ? (
+              <div className="nav-user">
+                <img
+                  src={this.props.user.profile.imgURL}
+                  className="avatar"
+                  alt="avatar"
+                  onClick={this.toggleList.bind(this)}
+                />
+                {this.state.show && (
+                  <div className="dropdown-user">
+                    {/* <Link>Account setting</Link> */}
+                    <div className="drop-nav-line" />
+                    <Link to="/" onClick={this.logout.bind(this)}>
+                      Logout
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="nav-guest">
+                <button type="button" className="pri-button">
+                  Register
+                </button>
+                <button type="button" className="sec-button">
+                  {/* <Link to "/login" >   Log in</Link>
+                   */}
+                  <Link to="/login">Log in</Link>
+                </button>
+              </div>
+            )}
 
             <div className="nav-cart">
               <div className="cart-cir">
@@ -137,3 +178,12 @@ class Navbar extends Component {
 }
 
 export default Navbar;
+
+// export default withTracker(props => {
+//   const isAuthenticated = Meteor.loggingIn();
+//   const profile = Meteor.user() ? Meteor.user.profile : {};
+//   return {
+//     isAuthenticated,
+//     profile
+//   };
+// })(Navbar);

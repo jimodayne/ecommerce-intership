@@ -1,42 +1,29 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { Component } from "react";
-import { Accounts } from "meteor/accounts-base";
+import { Meteor } from "meteor/meteor";
 import { withHistory, Link } from "react-router-dom";
 
-// Accounts.config({
-//   forbidClientAccountCreation: true,
-//   loginExpirationDays: 30,
-//   oauthSecretKey: "wgporjigrpqgdfg"
-// });
-
-class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
       email: "",
       password: "",
-      error: ""
+      error: undefined
     };
   }
   handleChange(evt) {
     this.setState({ [event.target.id]: evt.target.value });
   }
-  handleSignUp(e) {
+  handleLogIn(e) {
     e.preventDefault();
-    const newUser = {
-      email: this.state.email,
-      password: this.state.password,
-      profile: {
-        name: this.state.name
-      }
-    };
-    Accounts.createUser(newUser, err => {
+    Meteor.loginWithPassword(this.state.email, this.state.password, err => {
       if (err) {
         this.setState({
           error: err.reason
         });
       } else {
-        this.props.history.push("/login");
+        this.props.history.push("/");
       }
     });
   }
@@ -47,22 +34,11 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="register-pop-up">
-        <div className="register-top-wraper">
-          <div className="register-register">Register</div>
+      <div className="register-pop-up" id="login">
+        <div className="register-top-wraper" id="login">
+          <div className="register-register">Log In</div>
 
           <div className="register-form-wraper">
-            <div className="register-item">
-              <p>Name</p>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter your name..."
-                value={this.state.name}
-                onChange={this.handleChange.bind(this)}
-                // onKeyPress={this.handleKeyPress.bind(this)}
-              />
-            </div>
             <div className="register-item">
               <p>Email</p>
               <input
@@ -85,17 +61,23 @@ class Register extends Component {
                 // onKeyPress={this.handleKeyPress.bind(this)}
               />
             </div>
-            <p className="policy">
-              By creating an account you agree to the Terms of Service and
-              Privacy Policy
-            </p>
-            <button className="inactive" onClick={this.handleSignUp.bind(this)}>
-              Register
+
+            <button className="inactive" onClick={this.handleLogIn.bind(this)}>
+              Log In
             </button>
+            <div className="remember-forgot-wrapper">
+              <div className="left-wrap">
+                <img src="/check-box.svg" className="CheckBox" />
+                <div> Remember password</div>
+              </div>
+              <div className="right-wrap">Forgot your password?</div>
+            </div>
           </div>
         </div>
         <div className="register-bot-wraper">
-          <div>Do you have an account?  <Link to="/login">Log In</Link>
+          {/* <div>Don’t have an account?</div> */}
+          <div>
+            Don't have an account? <Link to="/signup">Register</Link>
           </div>
         </div>
       </div>
@@ -103,4 +85,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default Login;

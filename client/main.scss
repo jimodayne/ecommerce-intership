@@ -60,38 +60,83 @@
       transform: translate(-50%, -50%);
     }
     .nav-right {
+      .nav-user {
+        .dropdown-user {
+          width: 181px;
+          height: 73px;
+          box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+          border: solid 0.5px #eaeaea;
+          background-color: #fbfbfb;
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          right: 164px;
+          top: 31px;
+          .drop-nav-line {
+            width: 100%;
+            height: 1px;
+            background-color: #ececec;
+          }
+          a {
+            padding: 7px 0px 7px 13px;
+
+            font-family: Montserrat;
+            font-size: 12px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.83;
+            letter-spacing: normal;
+            color: var(--greyish-brown);
+          }
+        }
+        img {
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+        }
+      }
       display: flex;
       align-items: center;
       position: absolute;
       padding: 0px 130px;
       right: 0%;
-      button {
-        font-family: Montserrat;
-        cursor: pointer;
-        outline: none;
+      .nav-guest {
+        button {
+          font-family: Montserrat;
+          cursor: pointer;
+          outline: none;
+        }
+        button.pri-button {
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          padding: 0px;
+          width: 120px;
+          height: 35px;
+          line-height: 1.57;
+          letter-spacing: normal;
+          background-color: #fff;
+
+          color: var(--greyish-brown);
+          border: solid 0px var(--white);
+        }
+        button.sec-button {
+          background-color: #fff;
+          width: 120px;
+
+          height: 35px;
+
+          border-radius: 100px;
+          border: solid 1px var(--pale-orange);
+          a {
+            color: var(--pale-orange);
+            font-weight: bold;
+          }
+        }
       }
-      button.pri-button {
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        padding: 0px;
-        width: 120px;
-        height: 35px;
-        line-height: 1.57;
-        letter-spacing: normal;
-        background-color: #fff;
-        color: var(--greyish-brown);
-        border: solid 0px var(--white);
-      }
-      button.sec-button {
-        background-color: #fff;
-        width: 120px;
-        font-weight: bold;
-        height: 35px;
-        color: var(--pale-orange);
-        border-radius: 100px;
-        border: solid 1px var(--pale-orange);
-      }
+
       .nav-cart {
         padding-left: 14px;
         position: relative;
@@ -412,6 +457,9 @@ button.main {
 
 .register-pop-up {
   width: 555px;
+  &#login {
+    height: 568px;
+  }
   height: 703px;
   position: absolute;
   display: flex;
@@ -430,6 +478,10 @@ button.main {
     display: flex;
     font-family: Montserrat;
     align-items: center;
+    &#login {
+      height: 500px;
+    }
+
     .register-form-wraper {
       width: 100%;
       .register-item {

@@ -2,69 +2,26 @@ import React, { Component } from "react";
 import Card from "../ui/Components/Card";
 import { Products } from "../api/products";
 import { withTracker } from "meteor/react-meteor-data";
+import { Link } from "react-router-dom";
 
 class Gallery extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cardList: [
-        {
-          name: "Collete Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "60",
-          soldOut: false
-        },
-        {
-          name: "New Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "40",
-          soldOut: true
-        },
-        {
-          name: "Pipa Halter Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "69",
-          soldOut: false
-        },
-        {
-          name: "Collete Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "60",
-          soldOut: false
-        },
-        {
-          name: "New Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "40",
-          soldOut: true
-        },
-        {
-          name: "Collete Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "60",
-          soldOut: false
-        },
-        {
-          name: "New Stretch Linen",
-          imgURL: "/rectangle-copy-54.jpg",
-          price: "40",
-          soldOut: true
-        }
-      ]
-    };
+    this.state = {};
   }
   render() {
     return (
       <div className="gallery-wrapper">
         {this.props.cardList.map((item, index) => {
           return (
-            <Card
-              key={index}
-              name={item.title}
-              imgURL={item.imgURL.main}
-              price={item.pricing.price.toString()}
-              soldOut={item.soldOut}
-            />
+            <Link to={`/product/${item.sku}`} key={index}>
+              <Card
+                name={item.title}
+                imgURL={item.imgURL.main}
+                price={item.pricing.price.toString()}
+                soldOut={item.soldOut}
+              />
+            </Link>
           );
         })}
       </div>
@@ -74,6 +31,9 @@ class Gallery extends Component {
 
 export default withTracker(() => {
   return {
-    cardList: Products.find({}).fetch()
+    cardList: Products.find(
+      {},
+      { sku: 1, title: 1, pricing: 1, soldOut: 1, imgURL: 1 }
+    ).fetch()
   };
 })(Gallery);
