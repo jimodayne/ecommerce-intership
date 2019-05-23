@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class Card extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Card extends Component {
       imgURL: PropTypes.string,
       price: PropTypes.string,
       name: PropTypes.string,
-      soldOut: PropTypes.bool,
+      soldOut: PropTypes.bool
     };
   }
 
@@ -22,10 +23,12 @@ class Card extends Component {
         <div className="card-top">
           <img src={this.props.imgURL} />
         </div>
-        <div className="card-bottom">
-          <div className="card-name">{this.props.name}</div>
-          <div className="card-price">{'$' + this.props.price}</div>
-        </div>
+        <Link to={`/product/${this.props.sku}`}>
+          <div className="card-bottom">
+            <div className="card-name">{this.props.name}</div>
+            <div className="card-price">{"$" + this.props.price}</div>
+          </div>
+        </Link>
       </div>
     );
   }

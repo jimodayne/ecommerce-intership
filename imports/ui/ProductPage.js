@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Products } from "../api/products";
 import { withTracker } from "meteor/react-meteor-data";
-import _ from "lodash";
+// import _ from "lodash";
 import Reviews from "./Components/Reviews";
 import StarRatingComponent from "react-star-rating-component";
 
@@ -10,14 +10,24 @@ class ProductPage extends Component {
     super(props);
     this.state = {
       size: "",
-      quantity: 1
+      quantity: 1,
+      page: 1,
+      maxPage: 7
     };
     this.sizeArr = ["S", "M", "L"];
+    this.handleChangePage = this.handleChangePage.bind(this);
   }
 
   handleChangeSize(item) {
     if (item === this.state.size) this.setState({ size: "" });
     else this.setState({ size: item });
+  }
+
+  handleChangePage(amount) {
+    if (amount === -1 && this.state.page === 1) return;
+    if (amount === 1 && this.state.page === this.state.maxPage) return;
+    const newpage = this.state.page + amount;
+    this.setState({ page: newpage });
   }
 
   componentDidMount() {
@@ -63,7 +73,6 @@ class ProductPage extends Component {
                   />
                   <div className="vertical-line" />
                   <div className="review-num">
-                    {" "}
                     {product.review.length} Review
                   </div>
                 </div>
@@ -82,7 +91,7 @@ class ProductPage extends Component {
                           <div
                             key={index}
                             className="size-box-choosen"
-                            onClick={this.handleChangeSize.bind(this, item)}
+                            onClick={this.handleChangeSize}
                           >
                             <p>{item}</p>
                           </div>
@@ -141,7 +150,13 @@ class ProductPage extends Component {
                 <img src={product.imgURL.alt2} alt="alt-pic" />
               </div>
             </div>
-            <Reviews reviewsList={product.review}/>
+            <Reviews
+              reviewsList={product.review}
+              user={this.props.user}
+              handleChangePage={this.handleChangePage}
+              page={this.state.page}
+              maxPage={this.state.maxPage}
+            />
           </div>
         )}
       </>
@@ -154,6 +169,7 @@ export default withTracker(props => {
     match: { params }
   } = props;
   return {
+    user: Meteor.user(),
     product: Products.findOne({ sku: params.product_id })
   };
 })(ProductPage);

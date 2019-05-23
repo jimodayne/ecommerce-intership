@@ -17,8 +17,7 @@ class ProductList extends Component {
       sortShow: false,
       page: 1,
       maxPage: 100,
-      gender: this.props.gender,
-      category: this.props.category,
+
       type: "All dresses",
       cart: 0
     };
@@ -49,6 +48,7 @@ class ProductList extends Component {
     if (this.state.page === 1) return;
     this.setState({ page: this.state.page - 1 });
   }
+
   handleChangeSize(item) {
     if (_.includes(this.state.size, item)) {
       const newArr = _.remove(this.state.size, x => {
@@ -67,7 +67,7 @@ class ProductList extends Component {
     return (
       <div className="product-lst">
         <div className="product-header">
-          {this.state.gender / this.state.category}
+          {this.props.gender + " / " + this.props.category}
         </div>
         <div className="product-wrap">
           <div className="left-warper">
@@ -188,7 +188,7 @@ class ProductList extends Component {
                   </div>
                 )}
               </div>
-              <div className="page">
+              <div className="page-button">
                 <img
                   src="/arrow.svg"
                   className="ArrowLeft"

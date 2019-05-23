@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import StarRatingComponent from "react-star-rating-component";
 
 class Review extends Component {
   constructor(props) {
@@ -20,16 +21,27 @@ class Review extends Component {
   render() {
     return (
       <>
-        <div className="user-info">
-          <div className="name"> {this.state.name} </div>
-          <div className="date"> {this.state.date.format("DD MMM")} </div>
-        </div>
+        <div className="review-item-wrap">
+          <div className="user-info">
+            <div className="name"> {this.state.name} </div>
+            <div className="date"> {this.state.date.format("DD MMM")} </div>
+          </div>
 
-        <div className="user-review">
-          <div className="rev-title">{this.state.title}</div>
-          {/* <div className="rev-star">{this.state.tile}</div> */}
-          <div className="rev-content">{this.state.content}</div>
+          <div className="user-review">
+            <div className="rev-title">{this.state.title}</div>
+            <StarRatingComponent
+              name="star-rate"
+              editing={false}
+              // renderStarIcon={() => <img src="/star.svg" />}
+              value={this.state.star}
+              emptyStarColor="#D4D3D3"
+              starColor="#FFD543"
+            />
+            {/* <div className="rev-star">{this.state.tile}</div> */}
+            <div className="rev-content">{this.state.content}</div>
+          </div>
         </div>
+        <div className="dot-line" />
       </>
     );
   }
