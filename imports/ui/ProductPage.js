@@ -1,32 +1,33 @@
 import React, { Component } from "react";
-import { Products } from "../../api/products";
+import { Products } from "../api/products";
 import { withTracker } from "meteor/react-meteor-data";
 import _ from "lodash";
+import Reviews from "./Components/Reviews";
 import StarRatingComponent from "react-star-rating-component";
 
 class ProductPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: []
+      size: "",
+      quantity: 1
     };
     this.sizeArr = ["S", "M", "L"];
   }
 
   handleChangeSize(item) {
-    if (_.includes(this.state.size, item)) {
-      const newArr = _.remove(this.state.size, x => {
-        return x !== item;
-      });
-      this.setState({ size: newArr });
-    } else {
-      this.setState({ size: [...this.state.size, item] });
-    }
+    if (item === this.state.size) this.setState({ size: "" });
+    else this.setState({ size: item });
   }
 
   componentDidMount() {
     // const product = Products.findOne({ sku: params.product_id });
     // this.setState({ product: product });
+  }
+  handleChangeQuantity(item) {
+    if (this.state.quantity === 1 && item === -1) return;
+    const newQuantity = this.state.quantity + item;
+    this.setState({ quantity: newQuantity });
   }
   render() {
     const { product } = this.props;
@@ -69,23 +70,35 @@ class ProductPage extends Component {
                 <div className="size-header"> Size </div>
                 <div className="size-body">
                   {this.sizeArr.map((item, index) => {
-                    return _.includes(this.state.size, item) ? (
-                      <div
-                        key={index}
-                        className="size-box-choosen"
-                        onClick={this.handleChangeSize.bind(this, item)}
-                      >
-                        <p>{item}</p>
-                      </div>
-                    ) : (
-                      <div
-                        key={index}
-                        className="size-box-normal"
-                        onClick={this.handleChangeSize.bind(this, item)}
-                      >
-                        <p>{item}</p>
-                      </div>
-                    );
+                    if (product.size[item] === 0) {
+                      return (
+                        <div key={index} className="size-box-empty">
+                          <p>{item}</p>
+                        </div>
+                      );
+                    } else {
+                      if (this.state.size === item)
+                        return (
+                          <div
+                            key={index}
+                            className="size-box-choosen"
+                            onClick={this.handleChangeSize.bind(this, item)}
+                          >
+                            <p>{item}</p>
+                          </div>
+                        );
+                      else {
+                        return (
+                          <div
+                            key={index}
+                            className="size-box-normal"
+                            onClick={this.handleChangeSize.bind(this, item)}
+                          >
+                            <p>{item}</p>
+                          </div>
+                        );
+                      }
+                    }
                   })}
                 </div>
                 <div className="size-header"> Color </div>
@@ -97,6 +110,27 @@ class ProductPage extends Component {
                 </div>
                 <div className="quantity-wrap">
                   <div className="header"> Quantity </div>
+                  <div className="quantity-button">
+                    <img
+                      src="/minus.svg"
+                      alt="-"
+                      onClick={this.handleChangeQuantity.bind(this, -1)}
+                    />
+                    <p> {this.state.quantity}</p>
+                    <img
+                      src="/plus.svg"
+                      alt="+"
+                      onClick={this.handleChangeQuantity.bind(this, 1)}
+                    />
+                  </div>
+                </div>
+
+                <button>Add to cart</button>
+                <hr />
+                <div className="model">
+                  <b> Model wearing size {product.model_info.size}</b>
+                  <div> Chest: {product.model_info.chest}</div>
+                  <div> Length: {product.model_info.length}</div>
                 </div>
               </div>
               <div className="forth-col">
@@ -107,6 +141,7 @@ class ProductPage extends Component {
                 <img src={product.imgURL.alt2} alt="alt-pic" />
               </div>
             </div>
+            <Reviews reviewsList={product.review}/>
           </div>
         )}
       </>

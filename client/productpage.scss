@@ -96,6 +96,64 @@
         letter-spacing: normal;
         color: var(--dark-grey);
       }
+      .quantity-wrap {
+        display: flex;
+        padding: 28px 0px 30px 0px;
+        align-items: center;
+        .header {
+          font-family: Montserrat;
+          font-size: 14px;
+          font-weight: 500;
+          padding-right: 21px;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.57;
+          letter-spacing: normal;
+          color: var(--dark-grey);
+        }
+        .quantity-button {
+          width: 108px;
+          height: 42px;
+          padding: 0px 8px;
+          justify-content: space-between;
+          border: solid 1px var(--white-four);
+          display: flex;
+          align-items: center;
+          img {
+            cursor: pointer;
+          }
+          p {
+            margin: 0px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-grey);
+          }
+        }
+      }
+      button {
+        width: 429px;
+        height: 50px;
+        box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+        background-color: #5f6dff;
+        color: var(--white);
+        font-weight: bold;
+        padding: 0;
+        margin-bottom: 26px;
+      }
+      hr {
+        width: 429px;
+        margin: 0px 0px 25px 0px;
+      }
+      .model {
+        font-family: Montserrat;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.83;
+        letter-spacing: normal;
+        color: var(--dark-grey);
+      }
       .size-body {
         display: flex;
         justify-content: space-between;
@@ -144,6 +202,30 @@
             color: var(--white);
           }
         }
+
+        .size-box-empty {
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          // background-color: var(--pale-orange);
+          display: flex;
+          border: solid 1px var(--white-four);
+          justify-content: center;
+          align-items: center;
+          // margin-right: 16px;
+          p {
+            margin: 0;
+            opacity: 0.3;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            color: var(--greyish-brown);
+          }
+        }
       }
     }
 
@@ -157,5 +239,34 @@
         // padding-bottom: 25px;
       }
     }
+  }
+  .review-header-wrapper {
+    padding: 64px 130px 0px 130px;
+    display: flex;
+    align-items: center;
+    .line1 {
+      width: 80px;
+      height: 0.5px;
+      border: solid 0.5px #979797;
+    }
+    .text {
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0px 20px 0px 20px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: var(--dark-grey);
+    }
+    .line2 {
+      width: 100%;
+      height: 0.5px;
+      border: solid 0.5px #979797;
+    }
+  }
+  .review-grid {
+    display: grid;
   }
 }

@@ -7,7 +7,7 @@ import ButtomBar from "./ui/Components/BottomBar";
 import ProductList from "./ui/ProductList";
 import Register from "./ui/Components/Register";
 import Login from "./ui/Components/Login";
-import ProductPage from "./ui/Components/ProductPage";
+import ProductPage from "./ui/ProductPage";
 
 class Routes extends Component {
   render() {
