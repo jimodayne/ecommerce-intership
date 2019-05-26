@@ -26,10 +26,12 @@
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
+      padding-top: 10px;
       .card-name {
         font-family: Montserrat;
         font-size: 14px;
         font-weight: 500;
+        height: 40px;
         font-style: normal;
         font-stretch: normal;
         line-height: 1.43;

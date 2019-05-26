@@ -4,6 +4,7 @@ import { withTracker } from "meteor/react-meteor-data";
 // import _ from "lodash";
 import Reviews from "./Components/Reviews";
 import StarRatingComponent from "react-star-rating-component";
+// import { relativeTimeThreshold } from "moment";
 
 class ProductPage extends Component {
   constructor(props) {
@@ -30,10 +31,20 @@ class ProductPage extends Component {
     this.setState({ page: newpage });
   }
 
-  componentDidMount() {
-    // const product = Products.findOne({ sku: params.product_id });
-    // this.setState({ product: product });
+  handleAddToCard() {
+    if (!this.state.size) {
+      alert("Please choose the size")
+      return
+    }
+    const newItem = {
+      _id: this.props.product._id,
+      size: this.state.size,
+      quantity: this.state.quantity
+    };
+  
+    console.log(newItem);
   }
+
   handleChangeQuantity(item) {
     if (this.state.quantity === 1 && item === -1) return;
     const newQuantity = this.state.quantity + item;
@@ -72,9 +83,7 @@ class ProductPage extends Component {
                     starColor="#FFD543"
                   />
                   <div className="vertical-line" />
-                  <div className="review-num">
-                    {product.review.length} Review
-                  </div>
+                  <div className="review-num">{product.reviewCount} Review</div>
                 </div>
                 <div className="size-header"> Size </div>
                 <div className="size-body">
@@ -134,7 +143,9 @@ class ProductPage extends Component {
                   </div>
                 </div>
 
-                <button>Add to cart</button>
+                <button onClick={this.handleAddToCard.bind(this)}>
+                  Add to cart
+                </button>
                 <hr />
                 <div className="model">
                   <b> Model wearing size {product.model_info.size}</b>
@@ -150,13 +161,7 @@ class ProductPage extends Component {
                 <img src={product.imgURL.alt2} alt="alt-pic" />
               </div>
             </div>
-            <Reviews
-              reviewsList={product.review}
-              user={this.props.user}
-              handleChangePage={this.handleChangePage}
-              page={this.state.page}
-              maxPage={this.state.maxPage}
-            />
+            <Reviews id={product._id} />
           </div>
         )}
       </>
@@ -165,11 +170,17 @@ class ProductPage extends Component {
 }
 
 export default withTracker(props => {
+  Meteor.subscribe("products");
   const {
     match: { params }
   } = props;
   return {
     user: Meteor.user(),
-    product: Products.findOne({ sku: params.product_id })
+    product: Products.findOne(
+      { sku: params.product_id },
+      { fields: { soldQuantity: 0, shipping_details: 0, reviews: 0 } }
+    )
   };
 })(ProductPage);
+
+// export default ProductPage;

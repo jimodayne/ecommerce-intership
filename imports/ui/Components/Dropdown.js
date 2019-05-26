@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import onClickOutside from "react-onclickoutside";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Dropdown extends Component {
@@ -11,7 +11,7 @@ class Dropdown extends Component {
     };
   }
 
-  
+
 
   static get propTypes() {
     return {

@@ -30,11 +30,13 @@ class Gallery extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe("products");
+
   return {
     user: Meteor.user(),
     cardList: Products.find(
       {},
-      { sku: 1, title: 1, pricing: 1, soldOut: 1, imgURL: 1 }
+      { fields: { title: 1, sku: 1, imgURL: 1, soldOut: 1, pricing: 1 } }
     ).fetch()
   };
 })(Gallery);
