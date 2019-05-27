@@ -13,6 +13,7 @@ class ProductPage extends Component {
       size: "",
       quantity: 1,
       page: 1,
+      color: "",
       maxPage: 7
     };
     this.sizeArr = ["S", "M", "L"];
@@ -24,6 +25,10 @@ class ProductPage extends Component {
     else this.setState({ size: item });
   }
 
+  handleChooseColor(color) {
+    this.setState({ color: color });
+  }
+
   handleChangePage(amount) {
     if (amount === -1 && this.state.page === 1) return;
     if (amount === 1 && this.state.page === this.state.maxPage) return;
@@ -33,16 +38,28 @@ class ProductPage extends Component {
 
   handleAddToCard() {
     if (!this.state.size) {
-      alert("Please choose the size")
-      return
+      alert("Please choose the size");
+      return;
+    }
+    if (!this.state.color) {
+      alert("Please choose the color");
+      return;
     }
     const newItem = {
       _id: this.props.product._id,
       size: this.state.size,
-      quantity: this.state.quantity
+      quantity: this.state.quantity,
+      color: this.state.color
     };
-  
-    console.log(newItem);
+
+    Meteor.call("user.addCart", newItem, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        console.log("Create: " + newItem);
+      }
+    });
+    // console.log(newItem);
   }
 
   handleChangeQuantity(item) {
@@ -123,7 +140,21 @@ class ProductPage extends Component {
                 <div className="color-wrap">
                   {product.color.map((item, key) => {
                     const styles = { background: item };
-                    return <div className="color" key={key} style={styles} />;
+                    return this.state.color === item ? (
+                      <div
+                        className="color-choosen"
+                        key={key}
+                        style={styles}
+                        onClick={this.handleChooseColor.bind(this, item)}
+                      />
+                    ) : (
+                      <div
+                        className="color"
+                        key={key}
+                        style={styles}
+                        onClick={this.handleChooseColor.bind(this, item)}
+                      />
+                    );
                   })}
                 </div>
                 <div className="quantity-wrap">

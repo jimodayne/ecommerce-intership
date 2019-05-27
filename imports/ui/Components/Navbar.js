@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import Dropdown from "./Dropdown";
-
+import CartWrapper from "./CartWrapper";
 // import { withTracker } from "meteor/react-meteor-data";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: 1,
+      cart: [],
       error: "",
       show: false,
+      showCartList: false,
       content: "",
       menObj: [
         {
@@ -71,11 +72,6 @@ class Navbar extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({ profile: Meteor.user() });
-  //   console.log(this.props.user.profile);
-  // }
-
   logout(e) {
     e.preventDefault();
     Meteor.logout(err => {
@@ -89,6 +85,14 @@ class Navbar extends Component {
   }
   toggleList() {
     this.setState({ show: !this.state.show });
+  }
+
+  toggleCartList() {
+    this.setState({ showCartList: !this.state.showCartList });
+  }
+
+  toggleHideList() {
+    this.setState({ showCartList: false });
   }
 
   handleChange(event) {
@@ -155,12 +159,39 @@ class Navbar extends Component {
               </div>
             )}
 
-            <div className="nav-cart">
-              <div className="cart-cir">
-                <div className="cart-num">{this.state.cart} </div>
+            {this.props.user ? (
+              <div
+                className="nav-cart"
+                onClick={this.toggleCartList.bind(this)}
+              >
+                <div className="cart-cir">
+                  {this.props.user.cart ? (
+                    <div className="cart-num">
+                      {this.props.user.cart.length}{" "}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <img src="/cart.svg" className="Cart" />
               </div>
-              <img src="/cart.svg" className="Cart" />
-            </div>
+            ) : (
+              <div
+                className="nav-cart"
+                onClick={this.toggleCartList.bind(this)}
+              >
+                <div className="cart-cir">
+                  <div className="cart-num">{this.state.cart} </div>
+                </div>
+                <img src="/cart.svg" className="Cart" />
+              </div>
+            )}
+            {this.state.showCartList && (
+              <CartWrapper
+                showCartList={this.state.showCartList}
+                toggleHideList={this.toggleHideList.bind(this)}
+              />
+            )}
           </div>
         </div>
         <div className="nav-line" />
@@ -178,12 +209,3 @@ class Navbar extends Component {
 }
 
 export default Navbar;
-
-// export default withTracker(props => {
-//   const isAuthenticated = Meteor.loggingIn();
-//   const profile = Meteor.user() ? Meteor.user.profile : {};
-//   return {
-//     isAuthenticated,
-//     profile
-//   };
-// })(Navbar);

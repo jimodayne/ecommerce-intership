@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CartItem from "./Components/CartItem";
+// import { Products } from "../../api/products";
+import { withTracker } from "meteor/react-meteor-data";
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -30,4 +32,9 @@ class ShoppingCart extends Component {
   }
 }
 
-export default ShoppingCart;
+export default withTracker(() => {
+  Meteor.subscribe("userData");
+  return {
+    user: Meteor.user()
+  };
+})(ShoppingCart);
