@@ -8,7 +8,7 @@ import ProductList from "./ui/ProductList";
 import Register from "./ui/Components/Register";
 import Login from "./ui/Components/Login";
 import ProductPage from "./ui/ProductPage";
-import ShoppingCart from "./ui/ShoppingCart";
+import ShoppingCartWrapper from "./ui/ShoppingCartWrapper";
 
 class Routes extends Component {
   render() {
@@ -24,7 +24,7 @@ class Routes extends Component {
           <Route path="/signup" render={props => <Register />} />
           <Route path="/login" render={props => <Login />} />
           <Route path="/product/:product_id" component={ProductPage} />
-          <Route path="/cart" component={ShoppingCart} />
+          <Route path="/cart" component={ShoppingCartWrapper} />
         </Switch>
         <ButtomBar />
       </div>

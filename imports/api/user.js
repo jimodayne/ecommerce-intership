@@ -14,11 +14,34 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
+    cartItem._id = new Mongo.ObjectID();
     Meteor.users.update(this.userId, {
       $push: {
         cart: cartItem
       }
     });
+  },
+  "user.removeCartItem"(itemId) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Meteor.users.update(this.userId, {
+      $pull: {
+        cart: { _id: itemId }
+      }
+    });
+  },
+
+  "user.editCart"(itemId, amount) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Meteor.users.update(
+      { _id: this.userId, "cart._id": itemId },
+      { $set: { "cart.$.quantity": amount } }
+    );
   }
 
   // "user.editCart"(productId, reviewObj) {

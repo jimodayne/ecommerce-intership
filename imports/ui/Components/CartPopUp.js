@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PopUpItem from "./PopUpItem";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
+// import { Products } from "../../api/products";
 
 class CartPopUp extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class CartPopUp extends Component {
     this.props.handleClickOutside();
   }
 
-  componentWillUnmount() {}
+  //   componentWillUnmount() {}
 
   render() {
     return (
@@ -39,7 +40,9 @@ class CartPopUp extends Component {
 
 export default withTracker(() => {
   Meteor.subscribe("userData");
+  const user = Meteor.user();
+
   return {
-    user: Meteor.user()
+    user
   };
 })(CartPopUp);

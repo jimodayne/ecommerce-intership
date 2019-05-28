@@ -13,6 +13,7 @@ class Navbar extends Component {
       show: false,
       showCartList: false,
       content: "",
+      
       menObj: [
         {
           link: "#",

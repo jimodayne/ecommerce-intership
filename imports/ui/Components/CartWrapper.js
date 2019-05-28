@@ -9,9 +9,6 @@ class CartWrapper extends Component {
 
   handleClickOutside = evt => {
     this.props.toggleHideList();
-    // this.setState({
-    //   listOpen: false
-    // });
   };
 
   render() {

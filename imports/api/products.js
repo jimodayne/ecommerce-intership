@@ -23,7 +23,6 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
-    // const product = Products.find({ _id: productId });
     const tempReview = reviewObj;
     tempReview._id = this.userId;
     Products.update(

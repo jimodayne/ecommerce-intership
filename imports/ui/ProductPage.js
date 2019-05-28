@@ -46,7 +46,7 @@ class ProductPage extends Component {
       return;
     }
     const newItem = {
-      _id: this.props.product._id,
+      product_id: this.props.product._id,
       size: this.state.size,
       quantity: this.state.quantity,
       color: this.state.color
@@ -56,7 +56,7 @@ class ProductPage extends Component {
       if (err) {
         alert(err);
       } else {
-        console.log("Create: " + newItem);
+        // console.log("Create: " + newItem);
       }
     });
     // console.log(newItem);
@@ -75,7 +75,11 @@ class ProductPage extends Component {
         {product && (
           <div className="product-page-wrapper">
             <div className="product-top-wrap">
-              {product.categories.join(" / ") + " / " + product.title}
+              {product.type.gender +
+                " / " +
+                product.type.kind +
+                " / " +
+                product.title}
             </div>
             <div className="product-mid-wrap">
               <div className="first-col">
@@ -89,7 +93,7 @@ class ProductPage extends Component {
               </div>
               <div className="third-col">
                 <div className="product-title">{product.title}</div>
-                <div className="product-price">${product.pricing.price}</div>
+                <div className="product-price">${product.price}</div>
                 <div className="product-review">
                   <StarRatingComponent
                     name="star-rate"

@@ -16,13 +16,13 @@ class PopUpItem extends Component {
         {product && item && (
           <div className="pop-up-item">
             <div className="left">
-              <img src="/rectangle-copy-54.jpg" />
+              <img src={product.imgURL.main} />
             </div>
             <div className="right">
               <div className="title"> {product.title}</div>
               <div className="price-quantity-wrap">
                 <div className="price">
-                  {"$" + product.pricing.price * item.quantity}
+                  {"$" + product.price * item.quantity}
                 </div>
                 <div className="quantity-size">
                   {item.size + " . " + "Black" + " . " + item.quantity + " pcs"}
@@ -30,9 +30,8 @@ class PopUpItem extends Component {
               </div>
             </div>
           </div>
-       
         )}
-           <div  className="pop-item-line"/>
+        <div className="pop-item-line" />
       </>
     );
   }
@@ -43,8 +42,8 @@ export default withTracker(props => {
 
   return {
     product: Products.findOne(
-      { _id: props.item._id },
-      { fields: { title: 1, pricing: 1, imgURL: 1 } }
+      { _id: props.item.product_id },
+      { fields: { title: 1, price: 1, imgURL: 1 } }
     )
   };
 })(PopUpItem);

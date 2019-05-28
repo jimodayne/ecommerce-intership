@@ -13,7 +13,7 @@ class Login extends Component {
     };
   }
   handleChange(evt) {
-    this.setState({ [event.target.id]: evt.target.value });
+    this.setState({ [evt.target.id]: evt.target.value });
   }
   handleLogIn(e) {
     e.preventDefault();

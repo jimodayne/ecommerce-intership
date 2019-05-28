@@ -11,19 +11,21 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery-wrapper">
-        {this.props.cardList.map((item, index) => {
-          return (
-            <Card
-              key={index}
-              sku={item.sku}
-              name={item.title}
-              imgURL={item.imgURL.main}
-              price={item.pricing.price.toString()}
-              soldOut={item.soldOut}
-              user_id={this.props.user}
-            />
-          );
-        })}
+        {this.props.cardList.length
+          ? this.props.cardList.map((item, index) => {
+              return (
+                <Card
+                  key={index}
+                  sku={item.sku}
+                  name={item.title}
+                  imgURL={item.imgURL.main}
+                  price={item.price.toString()}
+                  soldOut={item.soldOut}
+                  user_id={this.props.user}
+                />
+              );
+            })
+          : ""}
       </div>
     );
   }
@@ -36,7 +38,7 @@ export default withTracker(() => {
     user: Meteor.user(),
     cardList: Products.find(
       {},
-      { fields: { title: 1, sku: 1, imgURL: 1, soldOut: 1, pricing: 1 } }
+      { fields: { title: 1, sku: 1, imgURL: 1, soldOut: 1, price: 1 } }
     ).fetch()
   };
 })(Gallery);

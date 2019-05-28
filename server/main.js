@@ -1,8 +1,10 @@
 import { Meteor } from "meteor/meteor";
 import "../imports/api/products";
 import "../imports/api/user";
+import "../imports/api/orders";
 
 Meteor.startup(() => {
+ 
   // If the Links collection is empty, add some data.
   // if (Links.find().count() === 0) {
   //   insertLink(
