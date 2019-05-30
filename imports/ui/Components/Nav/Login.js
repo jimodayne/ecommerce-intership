@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
-import { Link, Redirect } from "react-router-dom";
+// import { Link, Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {

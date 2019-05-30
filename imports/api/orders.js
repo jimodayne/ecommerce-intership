@@ -6,6 +6,16 @@ if (Meteor.isServer) {
   Meteor.publish("ordersUser", function ordersPublication() {
     return Orders.find({ userId: this.userId });
   });
+
+  Meteor.publish("ordersAdmin", function ordersAdminPublication(page) {
+    return Orders.find(
+      {},
+      {
+        skip: page * 10,
+        limit: 10
+      }
+    );
+  });
 }
 
 Meteor.methods({
@@ -57,6 +67,23 @@ Meteor.methods({
       {
         $set: {
           orderStatus: "cancel"
+        }
+      }
+    );
+  }
+});
+
+Meteor.methods({
+  "orders.editStatus"(status, orderId) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Orders.update(
+      { _id: orderId },
+      {
+        $set: {
+          orderStatus: status
         }
       }
     );

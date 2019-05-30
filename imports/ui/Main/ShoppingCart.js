@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import CartItem from "./Components/CartItem";
+import CartItem from "../Components/Cart/CartItem";
 import _ from "lodash";
+// import { BrowserRouter as Router } from "react-router-dom";
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class ShoppingCart extends Component {
             alert(err);
           } else {
             alert("Order placed!");
+            this.props.history.push("/myorder");
           }
         }
       );
@@ -112,7 +114,31 @@ class ShoppingCart extends Component {
               <div className="total-line" />
               <div className="total-item" id="bold">
                 <div className="title">Subtotal</div>
-                <div className="content" />
+                <div className="content">
+                  {"$" +
+                    (this.state.shipingpFee + products && user && user.cart
+                      ? user.cart.reduce((lst, item) => {
+                          const product = _.find(products, o => {
+                            return (
+                              o._id.toString() === item.product_id.toString()
+                            );
+                          });
+                          return product
+                            ? lst + product.price * item.quantity
+                            : "";
+                        }, 0)
+                      : haveItemInLocal &&
+                        tempCart.reduce((lst, item) => {
+                          const product = _.find(products, o => {
+                            return (
+                              o._id.toString() === item.product_id.toString()
+                            );
+                          });
+                          return product
+                            ? lst + product.price * item.quantity
+                            : "";
+                        }, 0))}
+                </div>
               </div>
             </div>
             <button onClick={this.handleCheckOut.bind(this)}>Check out</button>

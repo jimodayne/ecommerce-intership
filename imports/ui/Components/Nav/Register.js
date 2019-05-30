@@ -37,16 +37,16 @@ class Register extends Component {
         name: this.state.name
       }
     };
-    // Accounts.createUser(newUser, err => {
-    //   if (err) {
-    //     this.setState({
-    //       error: err.reason
-    //     });
-    //   } else {
-    //     this.props.toggleRegister();
-    //   }
-    // });
-    console.log("user -created!");
+    Accounts.createUser(newUser, err => {
+      if (err) {
+        this.setState({
+          error: err.reason
+        });
+      } else {
+        this.props.toggleRegister();
+      }
+    });
+    // console.log("user -created!");
   }
 
   hideLogin() {

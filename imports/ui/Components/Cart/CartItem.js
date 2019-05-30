@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import _ from "lodash";
-// import { Products } from "../../api/products";
 import { withTracker } from "meteor/react-meteor-data";
 
 class CartItem extends Component {

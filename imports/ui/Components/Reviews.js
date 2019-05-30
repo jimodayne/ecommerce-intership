@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import StarRatingComponent from "react-star-rating-component";
 import { withTracker } from "meteor/react-meteor-data";
 import Review from "./Review";
-// import { Products } from "../../api/products";
-// import moment from "moment";
 import _ from "lodash";
-import { Products } from "../../api/products";
+import { Products } from "../../api/products"; //
 
 class Reviews extends Component {
   constructor(props) {

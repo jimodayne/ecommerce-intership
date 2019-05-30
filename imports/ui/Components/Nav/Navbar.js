@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Dropdown from "./Dropdown";
-import CartWrapper from "./CartWrapper";
+import CartWrapper from "../Cart/CartWrapper";
 // import { withTracker } from "meteor/react-meteor-data";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Login from "./Login";
 import Portal from "./Portal";
 import Register from "./Register";
@@ -52,9 +52,8 @@ class Navbar extends Component {
   componentDidUpdate() {
     if (this.props.user) {
       const cart = JSON.parse(localStorage.getItem("cart"));
-      // if (cart.length) {
-      for (const item of cart) {
-        if (item) {
+      if (cart && cart[0]) {
+        for (const item of cart) {
           Meteor.call("user.addCart", item, (err, res) => {
             if (err) {
               console.log(err);

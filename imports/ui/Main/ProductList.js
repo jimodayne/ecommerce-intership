@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import Gallery from "./Gallery";
+import Gallery from "../Components/Gallery";
 import PropTypes from "prop-types";
 import faker from "faker";
 import nanoid from "nanoid";
 import titleize from "titleize";
 import rn from "random-number";
 import { Meteor } from "meteor/meteor";
-import { Components } from "../api/components";
+import { Components } from "../../api/components";
 import { withTracker } from "meteor/react-meteor-data";
 
 class ProductList extends Component {

@@ -1,6 +1,6 @@
-import { Products } from "../api/products";
+import { Products } from "../../../api/products"; //
 import { withTracker } from "meteor/react-meteor-data";
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "../../Main/ShoppingCart";
 
 export default withTracker(() => {
   Meteor.subscribe("userData");

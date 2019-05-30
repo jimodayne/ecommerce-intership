@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Orders } from "../api/orders";
+import { Orders } from "../../api/orders";
 import { withTracker } from "meteor/react-meteor-data";
-import OrderItem from "./Components/OrderItem";
+import OrderItem from "../Components/Cart/OrderItem";
 
 class OrdersPage extends Component {
   constructor(props) {
@@ -27,7 +27,6 @@ class OrdersPage extends Component {
                 return <OrderItem key={index} order={item} />;
               })
             : "No order yet!"}
-          
         </div>
       </div>
     );

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Products } from "../api/products";
+import { Products } from "../../api/products"; //
 import { withTracker } from "meteor/react-meteor-data";
 // import _ from "lodash";
-import Reviews from "./Components/Reviews";
+import Reviews from "../Components/Reviews";
 import StarRatingComponent from "react-star-rating-component";
-// import { relativeTimeThreshold } from "moment";
+
 
 class ProductPage extends Component {
   constructor(props) {

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+// import SellerOrders from "./SellerOrders";
+import LeftNav from "./LeftNav";
+import RightNav from "./RightNav";
+
 import SellerOrders from "./SellerOrders";
 
 class SellerHome extends Component {
@@ -10,11 +14,15 @@ class SellerHome extends Component {
   render() {
     return (
       <>
-        <Switch>
-          <Route path="/seller" component={SellerOrders} />
-          {/* <Route path="/seller/products" component={SellerProducts} />
+        <div className="seller-wrap">
+          <LeftNav />
+          <RightNav />
+          <Switch>
+            <Route path="/seller" component={SellerOrders} />
+            {/* <Route path="/seller/products" component={SellerProducts} />
           <Route path="/seller/products/add" component={SellerAddProducts} /> */}
-        </Switch>
+          </Switch>
+        </div>
       </>
     );
   }

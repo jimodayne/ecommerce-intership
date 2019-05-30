@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Products } from "../../api/products";
+import { Products } from "../../../api/products"; //
 import { withTracker } from "meteor/react-meteor-data";
 
 class PopUpItem extends Component {

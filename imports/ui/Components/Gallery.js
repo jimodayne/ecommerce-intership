@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Card from "../ui/Components/Card";
-import { Products } from "../api/products";
+import Card from "./Card";
+import { Products } from "../../api/products"; //
 import { withTracker } from "meteor/react-meteor-data";
 import _ from "lodash";
 
