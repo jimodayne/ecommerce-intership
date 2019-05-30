@@ -8,6 +8,7 @@ import "../imports/startup/accounts-config";
 Meteor.startup(() => {
   render(
     <div className="oisp-buddy">
+      
       <BrowserRouter>
         <App />
       </BrowserRouter>

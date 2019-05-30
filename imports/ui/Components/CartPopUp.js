@@ -9,7 +9,8 @@ class CartPopUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true
+      show: true,
+      cart: []
     };
   }
 
@@ -17,22 +18,49 @@ class CartPopUp extends Component {
     this.props.handleClickOutside();
   }
 
-  //   componentWillUnmount() {}
+  componentDidMount() {
+    if (!this.props.user) {
+      this.setState({ cart: JSON.parse(localStorage.getItem("cart")) });
+    }
+  }
 
   render() {
     return (
       <div className="cart-pop-up-wrapper">
-        {this.props.user.cart
-          ? this.props.user.cart.map((item, index) => {
+        {this.props.user ? (
+          this.props.user.cart ? (
+            <>
+              {this.props.user.cart.map((item, index) => {
+                return <PopUpItem key={index} item={item} />;
+              })}
+              <Link to="/cart" onClick={this.handleClick.bind(this)}>
+                <div className="view-cart">
+                  <p>View cart</p>
+                </div>
+              </Link>
+            </>
+          ) : (
+            <div className="view-cart">
+              <p>No item</p>
+            </div>
+          )
+        ) : this.state.cart.length ? (
+          <>
+            {this.state.cart.map((item, index) => {
               return <PopUpItem key={index} item={item} />;
-            })
-          : ""}
-        {/* <PopUpItem /> */}
-        <Link to="/cart" onClick={this.handleClick.bind(this)}>
+            })}
+
+            <Link to="/cart" onClick={this.handleClick.bind(this)}>
+              <div className="view-cart">
+                <p>View cart</p>
+              </div>
+            </Link>
+          </>
+        ) : (
           <div className="view-cart">
-            <p>View cart</p>
+            <p>No item</p>
           </div>
-        </Link>
+        )}
       </div>
     );
   }

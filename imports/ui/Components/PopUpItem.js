@@ -5,10 +5,9 @@ import { withTracker } from "meteor/react-meteor-data";
 class PopUpItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: "New Balance Men's Street Backpack"
-    };
+    this.state = {};
   }
+  componentDidMount() {}
   render() {
     const { item, product } = this.props;
     return (
@@ -38,12 +37,11 @@ class PopUpItem extends Component {
 }
 
 export default withTracker(props => {
-  Meteor.subscribe("products");
-
+  Meteor.subscribe("productsPublic");
   return {
     product: Products.findOne(
       { _id: props.item.product_id },
-      { fields: { title: 1, price: 1, imgURL: 1 } }
+      { fields: { soldQuantity: 0, shipping_details: 0, reviews: 0 } }
     )
   };
 })(PopUpItem);

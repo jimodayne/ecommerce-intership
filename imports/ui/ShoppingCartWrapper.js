@@ -4,13 +4,20 @@ import ShoppingCart from "./ShoppingCart";
 
 export default withTracker(() => {
   Meteor.subscribe("userData");
-  Meteor.subscribe("products");
+  Meteor.subscribe("moreInformationProduct");
 
   const user = Meteor.user();
 
   let productIdList = [];
-  if (user && user.cart) {
-    productIdList = user.cart.map(item => item.product_id);
+  if (user) {
+    if (user.cart) {
+      productIdList = user.cart.map(item => item.product_id);
+    }
+  } else {
+    const tempCart = JSON.parse(localStorage.getItem("cart"));
+    if (tempCart && tempCart[0]) {
+      productIdList = tempCart.map(item => item.product_id);
+    }
   }
 
   return {

@@ -23,18 +23,20 @@ class Reviews extends Component {
   }
 
   async componentDidMount() {
-    const userReview = _.find(this.props.product.reviews, element => {
-      return element._id === this.props.user._id;
-    });
-    const otherReviews = _.filter(this.props.product.reviews, element => {
-      return element._id !== this.props.user._id;
-    });
-    const showForm = userReview ? false : true;
-    this.setState({
-      userReview: userReview,
-      otherReviews: otherReviews,
-      showForm: showForm
-    });
+    if (this.props.user) {
+      const userReview = _.find(this.props.product.reviews, element => {
+        return element._id === this.props.user._id;
+      });
+      const otherReviews = _.filter(this.props.product.reviews, element => {
+        return element._id !== this.props.user._id;
+      });
+      const showForm = userReview ? false : true;
+      this.setState({
+        userReview: userReview,
+        otherReviews: otherReviews,
+        showForm: showForm
+      });
+    }
   }
 
   handleSubmitReview(e) {
@@ -233,9 +235,7 @@ class Reviews extends Component {
                 className="ArrowRight"
                 onClick={() => this.props.handleChangePage(1)}
               />
-              <div>
-                {this.props.page}/{this.props.maxPage}
-              </div>
+              <div>{this.props.page}</div>
               <img
                 src="/arrow.svg"
                 className="ArrowLeft"

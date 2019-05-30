@@ -12,11 +12,16 @@
   p {
     margin: 0px;
     font-size: 14px;
+    font-family: Montserrat;
     font-weight: 500;
     color: var(--dark-grey);
   }
 }
-
+button#add-to-cart {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+}
 .product-page-wrapper {
   width: 100%;
 
@@ -76,11 +81,11 @@
           border-radius: 50%;
         }
         .color-choosen {
-          width: 30px;
+          width: 27px;
           margin-right: 20px;
-          height: 30px;
+          height: 27px;
           border-radius: 50%;
-          border: 3px solid #fff;
+          border: 3px solid rgba(0, 0, 0, 0.25);
           border-radius: 18px;
         }
       }
@@ -242,7 +247,7 @@
       width: 100%;
       display: flex;
       flex-flow: column;
-      justify-content: space-between;
+      // justify-content: space-between;
       img {
         max-width: 100%;
         // padding-bottom: 25px;

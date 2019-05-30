@@ -3,8 +3,8 @@ import _ from "lodash";
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish("orders", function ordersPublication() {
-    return Orders.find();
+  Meteor.publish("ordersUser", function ordersPublication() {
+    return Orders.find({ userId: this.userId });
   });
 }
 
@@ -25,22 +25,13 @@ Meteor.methods({
       );
     }, 0);
 
-    Orders.insert(
-      {
-        createdAt: new Date(),
-        orderedItems: cart,
-        total: total,
-        orderStatus: "pending",
-        userId: this.userId
-      },
-      (err, res) => {
-        if (err) {
-          console.error(err);
-        } else {
-          console.log(res);
-        }
-      }
-    );
+    Orders.insert({
+      createdAt: new Date(),
+      orderedItems: cart,
+      total: total,
+      orderStatus: "pending",
+      userId: this.userId
+    });
 
     // Orders.insert({ text: "Hello, world!" });
 
@@ -49,6 +40,26 @@ Meteor.methods({
         cart: []
       }
     });
+  }
+});
+
+Meteor.methods({
+  "orders.cancel"(orderId) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Orders.update(
+      {
+        _id: orderId,
+        userId: this.userId
+      },
+      {
+        $set: {
+          orderStatus: "cancel"
+        }
+      }
+    );
   }
 });
 

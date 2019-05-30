@@ -13,8 +13,7 @@ class ProductPage extends Component {
       size: "",
       quantity: 1,
       page: 1,
-      color: "",
-      maxPage: 7
+      color: ""
     };
     this.sizeArr = ["S", "M", "L"];
     this.handleChangePage = this.handleChangePage.bind(this);
@@ -31,12 +30,12 @@ class ProductPage extends Component {
 
   handleChangePage(amount) {
     if (amount === -1 && this.state.page === 1) return;
-    if (amount === 1 && this.state.page === this.state.maxPage) return;
+    // if (amount === 1 && this.state.page === this.state.maxPage) return;
     const newpage = this.state.page + amount;
     this.setState({ page: newpage });
   }
 
-  handleAddToCard() {
+  handleAddToCard(e) {
     if (!this.state.size) {
       alert("Please choose the size");
       return;
@@ -52,13 +51,19 @@ class ProductPage extends Component {
       color: this.state.color
     };
 
-    Meteor.call("user.addCart", newItem, (err, res) => {
-      if (err) {
-        alert(err);
-      } else {
-        // console.log("Create: " + newItem);
-      }
-    });
+    if (this.props.user) {
+      Meteor.call("user.addCart", newItem, (err, res) => {
+        if (err) {
+          alert(err);
+        }
+      });
+    } else {
+      const arr = JSON.parse(localStorage.getItem("cart"));
+      arr.push(newItem);
+      localStorage.setItem("cart", JSON.stringify(arr));
+      window.location.reload();
+    }
+
     // console.log(newItem);
   }
 
@@ -72,7 +77,7 @@ class ProductPage extends Component {
     // const { title, model_info } = product;
     return (
       <>
-        {product && (
+        {product && product.type && (
           <div className="product-page-wrapper">
             <div className="product-top-wrap">
               {product.type.gender +
@@ -83,10 +88,18 @@ class ProductPage extends Component {
             </div>
             <div className="product-mid-wrap">
               <div className="first-col">
-                <img src={product.imgURL.alt1} alt="alt-pic" />
-                <img src={product.imgURL.alt2} alt="alt-pic" />
-                <img src={product.imgURL.alt1} alt="alt-pic" />
-                <img src={product.imgURL.alt2} alt="alt-pic" />
+                {product.imgURL.alt1 && (
+                  <img src={product.imgURL.alt1} alt="alt-pic" />
+                )}
+                {product.imgURL.alt2 && (
+                  <img src={product.imgURL.alt2} alt="alt-pic" />
+                )}
+                {product.imgURL.alt3 && (
+                  <img src={product.imgURL.alt3} alt="alt-pic" />
+                )}
+                {product.imgURL.alt4 && (
+                  <img src={product.imgURL.alt4} alt="alt-pic" />
+                )}
               </div>
               <div className="sec-col">
                 <img src={product.imgURL.main} alt="main-pic" />
@@ -178,7 +191,10 @@ class ProductPage extends Component {
                   </div>
                 </div>
 
-                <button onClick={this.handleAddToCard.bind(this)}>
+                <button
+                  onClick={this.handleAddToCard.bind(this)}
+                  id="add-to-cart"
+                >
                   Add to cart
                 </button>
                 <hr />
@@ -190,10 +206,16 @@ class ProductPage extends Component {
               </div>
               <div className="forth-col">
                 <div>More from {product.brand}</div>
+                {product.imgURL.alt1 && (
+                  <img src={product.imgURL.alt1} alt="alt-pic" />
+                )}
+                {product.imgURL.alt2 && (
+                  <img src={product.imgURL.alt2} alt="alt-pic" />
+                )}
+
+                {/* <img src={product.imgURL.alt2} alt="alt-pic" />
                 <img src={product.imgURL.alt1} alt="alt-pic" />
-                <img src={product.imgURL.alt2} alt="alt-pic" />
-                <img src={product.imgURL.alt1} alt="alt-pic" />
-                <img src={product.imgURL.alt2} alt="alt-pic" />
+                <img src={product.imgURL.alt2} alt="alt-pic" /> */}
               </div>
             </div>
             <Reviews id={product._id} />
@@ -205,10 +227,11 @@ class ProductPage extends Component {
 }
 
 export default withTracker(props => {
-  Meteor.subscribe("products");
+  Meteor.subscribe("moreInformationProduct");
   const {
     match: { params }
   } = props;
+
   return {
     user: Meteor.user(),
     product: Products.findOne(

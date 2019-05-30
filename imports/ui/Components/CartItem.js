@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import _ from "lodash";
 // import { Products } from "../../api/products";
-// import { withTracker } from "meteor/react-meteor-data";
+import { withTracker } from "meteor/react-meteor-data";
 
 class CartItem extends Component {
   constructor(props) {
@@ -13,7 +14,16 @@ class CartItem extends Component {
 
   handleRemove() {
     // console.log(this.props.item._id);
-    Meteor.call("user.removeCartItem", this.props.item._id);
+    if (this.props.user) {
+      Meteor.call("user.removeCartItem", this.props.item._id);
+    } else {
+      const tempCart = JSON.parse(localStorage.getItem("cart"));
+      _.remove(tempCart, currentObject => {
+        return currentObject.product_id === this.props.item.product_id;
+      });
+      localStorage.setItem("cart", JSON.stringify(tempCart));
+      window.location.reload();
+    }
   }
 
   componentDidMount() {
@@ -82,5 +92,10 @@ class CartItem extends Component {
     );
   }
 }
-
-export default CartItem;
+export default withTracker(() => {
+  Meteor.subscribe("userData");
+  const user = Meteor.user();
+  return {
+    user
+  };
+})(CartItem);

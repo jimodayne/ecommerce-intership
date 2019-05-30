@@ -3,6 +3,16 @@ body {
   font-family: sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 :root {
   --white: #ffffff;
   --charcoal-grey: #3d3d3f;

@@ -7,6 +7,13 @@ if (Meteor.isServer) {
       { fields: { profile: 1, cart: 1, emails: 1 } }
     );
   });
+
+  // Meteor.publish("userSellerData", function() {
+  //   return Meteor.users.find(
+  //     { _id: this.userId },
+  //     { fields: { profile: 1, cart: 1, emails: 1, role: 1 } }
+  //   );
+  // });
 }
 
 Meteor.methods({
@@ -26,6 +33,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
+    console.log(itemId);
     Meteor.users.update(this.userId, {
       $pull: {
         cart: { _id: itemId }
