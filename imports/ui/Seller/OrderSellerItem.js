@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { Meteor } from "meteor/meteor";
+import { Products } from "../../api/products"; //
+import { withTracker } from "meteor/react-meteor-data";
 
 class OrderSellerItem extends Component {
   constructor(props) {
@@ -21,8 +23,8 @@ class OrderSellerItem extends Component {
       total,
       createdAt,
       _id,
-      orderStatus
-      // orderedItems
+      orderStatus,
+      orderedItems
     } = this.props.order;
     return (
       <div className="order-item-wraper">
@@ -30,7 +32,16 @@ class OrderSellerItem extends Component {
         <div className="date">
           {moment(createdAt).format("dddd, MMMM Do YYYY")}
         </div>
-        <div className="detail">Comming soon</div>
+        <div className="detail">
+          {orderedItems.length === 1
+            ? `${this.props.product && this.props.product.title} (${
+                orderedItems[0].size
+              }) x ${orderedItems[0].quantity}`
+            : `${this.props.product && this.props.product.title} (${
+                orderedItems[0].size
+              }) x ${orderedItems[0].quantity} and ${orderedItems.length -
+                1}  more`}
+        </div>
         <div className="total">{total.toFixed(2)}</div>
         <div className="status">
           {orderStatus === "pending" ? (
@@ -68,4 +79,16 @@ class OrderSellerItem extends Component {
   }
 }
 
-export default OrderSellerItem;
+// export default OrderSellerItem;
+
+export default withTracker(props => {
+  Meteor.subscribe("productsPublic");
+  // const item = props.order.orderedItems[0].product_id;
+  // console.log(item);
+  return {
+    product: Products.findOne(
+      { _id: props.order.orderedItems[0].product_id },
+      { fields: { title: 1 } }
+    )
+  };
+})(OrderSellerItem);

@@ -14,8 +14,10 @@ class ShoppingCart extends Component {
   }
 
   handleCheckOut() {
+    const haveItem =
+      this.props.user && this.props.user.cart && this.props.user.cart[0];
     if (this.props.user) {
-      if (!this.props.user.cart) {
+      if (!haveItem) {
         alert("No product!");
         return;
       }

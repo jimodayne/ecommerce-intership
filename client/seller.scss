@@ -195,7 +195,7 @@
         line-height: 1.43;
         letter-spacing: normal;
         color: var(--charcoal-grey);
-        grid-template-columns: 10% 15% 30% 15% 15% 15%;
+        grid-template-columns: 10% 18% auto 15% 15% 15%;
 
         .id {
           align-self: center;
@@ -218,7 +218,7 @@
           justify-content: center;
           .pending-box {
             width: 85px;
-            height: 35px;
+            height: 30px;
             border-radius: 12px;
             background-color: #fbba4e;
             font-family: Montserrat;
@@ -236,7 +236,7 @@
           }
           .complete-box {
             width: 85px;
-            height: 35px;
+            height: 30px;
             border-radius: 12px;
             background-color: var(--pea-green);
             font-family: Montserrat;
@@ -254,7 +254,7 @@
           }
           .cancel-box {
             width: 85px;
-            height: 35px;
+            height: 30px;
             border-radius: 12px;
             background-color: #f05d62;
             font-family: Montserrat;
@@ -331,7 +331,7 @@
         display: grid;
         height: 64px;
         padding: 0px 24px;
-        grid-template-columns: 10% 15% 30% 15% 15% 15%;
+        grid-template-columns: 10% 18% auto 15% 15% 15%;
         font-family: Montserrat;
         font-size: 12px;
         font-weight: 600;
@@ -383,4 +383,61 @@
       color: var(--dark-grey);
     }
   }
+}
+
+.one-line-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 38px 24px 0px 24px;
+  .sell-left-wrapper {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: var(--charcoal-grey);
+  }
+  .sell-right-wrapper {
+    display: flex;
+    .box {
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border: solid 1px var(--white-three);
+      background-color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.43;
+      letter-spacing: normal;
+      text-align: center;
+      color: var(--charcoal-grey);
+    }
+    .box#chosen {
+      width: 32px;
+      height: 32px;
+      border: solid 1px var(--pale-orange);
+      background-color: var(--pale-orange);
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.71;
+      letter-spacing: normal;
+      color: var(--white);
+    }
+  }
+}
+
+.sell-list-items-wrapper {
+  height: 480px;
 }

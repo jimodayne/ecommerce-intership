@@ -8,13 +8,7 @@ if (Meteor.isServer) {
   });
 
   Meteor.publish("ordersAdmin", function ordersAdminPublication(page) {
-    return Orders.find(
-      {},
-      {
-        skip: page * 10,
-        limit: 10
-      }
-    );
+    return Orders.find({});
   });
 }
 
