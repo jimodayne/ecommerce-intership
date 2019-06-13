@@ -2,17 +2,21 @@
 
 This is my project for internship in DSV. It is a shopping website.
 
-Main function:
 
-## Login
-## View products
-## View single product
-## Add to cart
-## Place an order
-## Admin page: view order
+**Main function:**
 
+- Log in
+- View products list
+- View single product
+- Add to cart
+- Place an order
+- Admin page: view order
 
-Framework: Meteor
+## Technologies
+- **React:** Front-end
+- **Meteor:** Full-stack
+- **MongoDB:** Database
 
-Script to run the app:
-# meteor
+## Set-up Project
+1. Clone source code from branch `master`
+2. Run `meteor`
