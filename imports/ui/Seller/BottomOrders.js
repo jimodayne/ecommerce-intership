@@ -26,7 +26,7 @@ class BottomOrders extends Component {
         } of ${this.props.total} entries`}</div>
 
         <div className="sell-right-wrapper">
-          <div className="box">
+          <div className="box" onClick={() => this.props.handleChoosePage(1)}>
             <img src="/first-page.svg" />
           </div>
           <div
