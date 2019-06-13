@@ -1,6 +1,6 @@
 # Ecommerce Intership Project
 
-This is my project for internship in DSV. It is a shopping website.
+This is my project for internship. It is a shopping website.
 
 
 **Main function:**
