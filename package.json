@@ -30,7 +30,7 @@
     "react-router-dom": "^5.0.0",
     "react-star-rating-component": "^1.4.1",
     "titleize": "^2.1.0",
-    "validator": "^11.0.0"
+    "validator": "^13.7.0"
   },
   "meteor": {
     "mainModule": {
